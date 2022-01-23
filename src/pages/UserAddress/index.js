@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button, Text } from 'upkit';
 import { LayoutOne, Table } from 'upkit/dist';
 import TopBar from '../../components/TopBar';
+import { useAddressData } from '../../app/hooks/address';
 
 const columns = [
   { Header: 'Nama', accessor: 'nama'}, 
@@ -15,21 +16,22 @@ const columns = [
 ];
 
 export default function UserAddress() {
-  const data = [
-    {
-      "_id": "615aece526f5dccb18fd47de",
-      "nama": "Edi Hartono",
-      "kelurahan": "KARANGSONO",
-      "kecamatan": "MRANGGEN",
-      "kabupaten": "KABUPATEN DEMAK",
-      "provinsi": "JAWA TENGAH",
-      "detail": "depan sd karangsono 3",
-      "user": "615a97b213e3a8ef341b4cf8",
-      "createdAt": "2021-10-04T12:00:37.963Z",
-      "updatedAt": "2021-10-04T12:00:37.963Z",
-      "__v": 0
-    }
-  ]
+  const {count, data, limit, page, setPage, status} = useAddressData();
+  // const data = [
+  //   {
+  //     "_id": "615aece526f5dccb18fd47de",
+  //     "nama": "Edi Hartono",
+  //     "kelurahan": "KARANGSONO",
+  //     "kecamatan": "MRANGGEN",
+  //     "kabupaten": "KABUPATEN DEMAK",
+  //     "provinsi": "JAWA TENGAH",
+  //     "detail": "depan sd karangsono 3",
+  //     "user": "615a97b213e3a8ef341b4cf8",
+  //     "createdAt": "2021-10-04T12:00:37.963Z",
+  //     "updatedAt": "2021-10-04T12:00:37.963Z",
+  //     "__v": 0
+  //   }
+  // ]
   return (
     <LayoutOne size="large">
       <div>
@@ -47,11 +49,11 @@ export default function UserAddress() {
           <Table
             items={data}
             columns={columns}
-            totalItems={10}
-            page={1}
-            isLoading={false}
-            perPage={3}
-            onPageChange={_ => {}}
+            totalItems={count}
+            page={page}
+            isLoading={status === 'process'}
+            perPage={limit}
+            onPageChange={page => setPage(page)}
           />
         </div>
 

@@ -35,7 +35,7 @@ export default function StatusLabel({status}) {
 }
 
 StatusLabel.defaultProps = {
-
+    status: 'waiting_payment'
 }
 
 StatusLabel.propTypes = {

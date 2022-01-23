@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import {HashRouter as Router, Switch, Route} from 'react-router-dom';
 import 'upkit/dist/style.min.css';
+import { listen } from './app/listener';
 import Checkout from './pages/Checkout';
 import Home from './pages/Home';
 import Invoice from './pages/Invoice';
@@ -13,6 +15,11 @@ import UserAddressAdd from './pages/UserAddressAdd';
 import UserOrder from './pages/UserOrder';
 
 function App() {
+  
+  useEffect(() => {
+    listen();
+  }, [])
+
   return (
     <Router>
       <Switch>
