@@ -93,8 +93,8 @@ export default function Checkout() {
     const { data } = await createOrder(payload);
     if(!data.error){
       dispatch(clearItem());
-      alert(JSON.stringify(data))
-      // history.push(`/invoice/${data._id}`);
+      // alert(JSON.stringify(data))
+      history.push(`/invoice/${data._id}`);
     }
   }
 
